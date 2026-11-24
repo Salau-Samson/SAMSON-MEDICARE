@@ -1,0 +1,165 @@
+<html>
+<head>
+<style>
+/* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Fixed Navigation Bar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.25rem;
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #4b5563;
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #ffffff;
+      background-color: #2563eb;
+    }
+
+    /* Sections */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6rem 2rem 2rem;
+      text-align: center;
+    }
+
+    section:nth-child(even) {
+      background-color: #f3f4f6;
+    }
+
+    section:nth-child(odd) {
+      background-color: #ffffff;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1f2937;
+    }
+
+    p {
+      max-width: 600px;
+      color: #6b7280;
+    }
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a href="#home" class="logo">MediCare Hospital</a>
+<ul class="nav-links">
+<li><a href="#home"class="active">Home</a></li>
+<li><a href="#services">Services</a>
+</li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+<!--Page Sections-->
+<section id="home">
+<h1>Home Section</h1>
+<p>Welcome to MediCare, your trusted destination for healthcare information and services. We are committed to promoting healthier lives through quality care and reliable medical information..</p>
+<img src="A1[1].jpeg"alt="A STETHOSCOPE" height="400" width="500">
+</section>
+
+<section id="services">
+<h1>Our Services</h1>
+<p>We offer a range of healthcare-related services, including health education, medical consultations, health awareness programmes and general wellness guidance.</p>
+<img src="A3[1].jpg"alt="OUR BED" height="400" width="500">
+<img src="A4[1].jpeg"alt="A SYRINGE" height="400" width="500">
+
+
+</section>
+
+<section id="contact">
+<h1>Contact Us</h1>
+<p>We would love to hear from you! Contact MediCare for enquiries, feedback or further information. Your health and well-being matter to us.<br>DR SAMSON: <strong>09072788327</p><br>
+<img src="A2[1].jpg"alt="OUR BUILDING" height="400" width="500">
+
+
+</section>
+
+<!--Scrollspy Javascript using intersectionObserver-->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll(".nav-links a");
+
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.6 // Trigger when 60% of the section is visible
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              if (link.getAttribute("href") === `#${id}`) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
